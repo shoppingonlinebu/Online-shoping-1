@@ -1,0 +1,26 @@
+#{extends 'main.html' /}
+#{set 'title'}
+หน้าแรก
+#{/set}
+
+<div class="center jumbotron">
+ 		<img class="imgwel" src="/public/images/bg.png">
+ 		<br><br>
+ 	#{if controllers.Security.isConnected()}
+		<a href="@{Sell.sell()}" class="css3dbutton red">
+	#{/if}
+	#{else}
+		<a href="@{Secure.login()}" class="css3dbutton red">
+	#{/else}
+		<span class="outer">
+		<span class="top">ขาย!</span>
+		<span class="bottom">Sell</span>
+		</span>
+		</a>
+		<a href="@{Buy.buy()}" class="css3dbutton">
+		<span class="outer">
+		<span class="top">ซื้อ!</span>
+		<span class="bottom">Buy</span>
+		</span>
+		</a>
+</div>
