@@ -1,0 +1,42 @@
+<header>
+ <nav class="navbar navbar-inverse navbar-fixed-top">
+ 	<div class="container">
+ 	<div class="navbar-header">
+ 		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+		data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+ 	<span class="sr-only">Toggle navigation</span>
+ 	<span class="icon-bar"></span>
+ 	<span class="icon-bar"></span>
+ 		</button>
+ <a id="logo" class="navbar-brand" href="@{StaticPages.home()}">
+ <img class="img1" src="/public/images/logoshoes.png" weight="100" height="100"></a><br>
+ 	</div>
+ 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+ 		<ul class="nav navbar-nav navbar-right">
+ 			<li class="active"><a href="@{StaticPages.home()}">หน้าแรก<span class="sr-only">(current)</span></a></li>
+ 			<li><a href="@{Buy.buy()}">ซื้อ</a></li>
+ 			
+ 						
+ 			
+ 			#{if controllers.Security.isConnected()}
+ 				<li><a href="@{Sell.sell}">ขาย</a></li>
+ 				<li class="dropdown">
+ 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ariahaspopup="true" aria-expanded="false">บัญชีผู้ใช้<span class="caret"></span></a>
+ 					<ul class="dropdown-menu">
+ 						<li><a href="@{Users.show(controllers.Security.get_signed_in_id())}">ข้อมูลส่วนตัว</a></li>
+ 						<li><a href="@{Users.edit(controllers.Security.get_signed_in_id())}">ตั้งค่า</a></li>
+ 						<li role="separator" class="divider"></li>
+ 						<li><a href="@{Secure.logout()}">ลงชื่อออก</a></li>
+ 					</ul>
+ 				</li>
+			#{/if}
+			#{else}
+ 				<li><a href="@{Secure.login()}">เข้าสู่ระบบ</a></li>
+ 				<li><a href="@{Register.add()}"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span>สมัครสมาชิก</a></li>
+			#{/else}
+ 
+ 		</ul>
+ 	</div>
+ 	</div>
+ </nav>
+</header>
