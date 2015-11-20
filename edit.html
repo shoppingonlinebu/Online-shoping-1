@@ -1,0 +1,52 @@
+#{extends 'main.html' /}
+#{set title:'แก้ไขข้อมูลส่วนตัว' /}
+<h1>แก้ไขข้อมูลส่วนตัว</h1>
+<div class="row">
+ 	<div class="col-md-6 col-md-offset-3">
+ 	
+ 		#{ifErrors}
+ 		<div id="error_explanation">
+ 			<div class="alert alert-danger alert-dismissible" role="alert">
+ 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span ariahidden="true">&times;</span></button>
+ 				The form contains ${errors.size() - 1} errors.
+ 			</div>
+ 			<ul>
+				#{errors}
+					#{if error.key != 'user'}
+ 						<li>${error}</li>
+					#{/if}
+				#{/errors}
+ 			</ul>
+ 		</div>
+		#{/ifErrors}
+ 	
+		#{form @Users.update(), class:'form-horizontal'}
+		<input type="text" name="user.id" value="${user.id}" hidden/>
+		<div>
+ 			<label for="email">อีเมล :</label>
+ 			<input id="email" type="text" class="form-control" name="user.email" value="${user.email}" disabled/><br/>
+ 			<label for="passwd">รหัสผ่าน :</label>
+ 			<input id="passwd" type="password" class="form-control" name="user.passwd"/><br/>
+ 			<label for="name">Name :</label>
+ 			<input id="name" type="text" class="form-control" name="user.name" value="${user.name}"/><br/>
+ 			
+ 			<label for="fullname">ชื่อ :</label>
+ 			<input id="fullname" type="text" class="form-control" name="user.fullname" value="${user.fullname}"/><br/>
+ 			<label for="lastname">นามสกุล :</label>
+ 			<input id="lastname" type="text" class="form-control" name="user.lastname" value="${user.lastname}"/><br/>
+ 			<label for="call">เบอร์โทรศัพท์ :</label>
+ 			<input id="call" type="text" class="form-control" name="user.call" value="${user.call}"/><br/>
+ 			<label for="fbid">ไอดีเฟสบุ๊ค :</label>
+ 			<input id="fbid" type="text" class="form-control" name="user.fbid" value="${user.fbid}"/><br/>
+ 			<label for="lineid">ไอดีไลน์ :</label>
+ 			<input id="lineid" type="text" class="form-control" name="user.lineid" value="${user.lineid}"/><br/>
+ 			 			
+		</div>
+		<div class="text-center">
+ 			<input class="btn btn-primary btn-large" type="submit" name="submit" value="Update my account" /><br/><br/>
+		</div>
+	#{/form}
+		<img src="${user.getGravatarURL()}" alt="${user.name}" class="gravatar"/>
+		<a href="http://gravatar.com/emails">change</a>
+ 	</div>
+</div>

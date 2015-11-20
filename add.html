@@ -1,0 +1,44 @@
+#{extends 'main.html' /}
+#{set 'title'}สร้างบัญชีผู้ใช้#{/set}
+<h1>ลงทะเบียน</h1>
+
+#{ifErrors}
+	<div id="error_explanation">
+		<div class="alert alert-danger alert-dismissible" role="alert">
+ 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span ariahidden="true">&times;</span></button> The form contains ${errors.size() - 1} errors.
+	</div>
+		<ul>
+ 		#{errors}
+ 			#{if error.key != 'user'}
+ 				<li>${error}</li>
+ 			#{/if}
+ 		#{/errors}
+		</ul>
+	</div>
+#{/ifErrors}
+#{form @Register.create()}
+	<div class="row" style="margin-left:380px">
+ 	<div class="span6 offset3">
+ 		</div>
+ 			<label>อีเมล</label>
+ 			<input type="text" class="form-control" id="email" name="user.email" value="${flash['user.email']}" /><br>
+ 			<label>รหัสผ่าน</label>
+ 			<input type="password" class="form-control" id="passwd" name="user.passwd" /><br>
+ 			<label>ชื่อผู้ใช้</label>
+ 			<input type="text" class="form-control" id="name" name="user.name" value="${flash['user.name']}" /><br>
+ 			<label>ชื่อ</label>
+ 			<input type="text" class="form-control" id="fullname" name="user.fullname" value="${flash['user.fullname']}" /><br>
+ 			<label>นามสกุล</label>
+ 			<input type="text" class="form-control" id="lastname" name="user.lastname" value="${flash['user.lastname']}" /><br>
+ 			<label>เบอร์โทรศัพท์</label>
+ 			<input type="text" class="form-control" id="call" name="user.call" value="${flash['user.cell']}" /><br>
+ 			<label>ไอดีเฟสบุ๊ค</label>
+ 			<input type="text" class="form-control" id="fbid" name="user.fbid" value="${flash['user.fbid']}" /><br>
+ 			<label>ไอดีไลน์</label>
+ 			<input type="text" class="form-control" id="lineid" name="user.lineid" value="${flash['user.lineid']}" /><br>
+  			<input class="btn btn-primary btn-large" type="submit" name="submit" value="Create my account" />
+ 			<br/>
+ 		</div>
+
+
+#{/form}
