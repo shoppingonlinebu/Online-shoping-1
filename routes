@@ -1,0 +1,39 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+#Login Pages
+* 	/ 										module:secure
+GET /login 									Secure.login
+GET /logout 								Secure.logout
+
+# Home page
+GET / 										StaticPages.home 
+
+# Static Pages
+GET /help 									StaticPages.help
+GET /about 									StaticPages.about
+GET /contact								StaticPages.contact
+GET /news									StaticPages.news
+
+# Buy Pages
+GET /buy 									Buy.buy
+GET /selectbuy 								Buy.SelectBuy
+
+# Sell Pages
+GET /sell 									Sell.sell
+
+# Users Pages
+GET /users/add 								Register.add
+GET /users/list/{currentPage} 				Users.index
+GET /users/list 							Users.index
+GET /users/edit/{id} 						Users.edit
+GET /users/show/{id} 						Users.show
+
+# Ignore favicon requests
+GET     /favicon.ico                        404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}
