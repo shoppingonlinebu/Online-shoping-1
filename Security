@@ -1,0 +1,35 @@
+package controllers;
+
+import play.libs.Crypto;
+import models.*;
+
+public class Security extends Secure.Security {
+	static boolean authenticate(String email, String password) {
+		User checking_user = User.find_by_email(email);
+		if (checking_user != null) {
+			password = Crypto.passwordHash(password);
+			if (checking_user.passwd.equals(password)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static Long get_signed_in_id() {
+		String email = Security.connected();
+		User search_user = User.find_by_email(email);
+		return search_user.id;
+	}
+
+	static User get_current_user() {
+		return User.find_by_id(Security.get_signed_in_id());
+	}
+
+	public static boolean check_current_user(Long id) {
+		if (Security.get_signed_in_id() == id) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
